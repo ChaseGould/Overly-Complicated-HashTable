@@ -28,6 +28,7 @@ public class TNode<Key extends Comparable<Key>, Value> implements Comparable<TNo
 	}
 	
 	//methods
+	//The insertNode method adds a new node to the tree.
 	protected void insertNode(Key newKey, Value newValue)
 	{
 		if (this.key.compareTo(newKey) == 0)
@@ -58,7 +59,7 @@ public class TNode<Key extends Comparable<Key>, Value> implements Comparable<TNo
 		}//end of second else if
 	}//end of method
 	
-	
+	//The getNode method returns a Node whose key matches the key provided in the method argument.
 	protected Value getNode(Key newKey)
 	{
 		if (this.key.compareTo(newKey) == 0)
@@ -98,21 +99,17 @@ public class TNode<Key extends Comparable<Key>, Value> implements Comparable<TNo
 		return null;
 	}
 	
-	
+	/*The deleteNode method deletes a Node whose key matches the key provided in the method argument.
+	 * this method also restructures the tree so that the values continue to be postitioned in a way
+	 * that is consistent with binary search trees.
+	 */
 	protected TNode<Key,Value> deleteNode(Key newKey)
 	{
-	
-		//need a final else statement if the keys dont match
-		//it could print "keys dont match press 1 to exit or 2 to enter a new key and start the method over.
 		if (this.key.compareTo(newKey) == 1)
 		{
 			if (this.hasLeftChild())
 			{
-				TNode<Key,Value> leftNode = this.getLeftChild().deleteNode(newKey);
-				if (leftNode != null)
-				{
-					return leftNode;
-				}
+				this.getLeftChild().deleteNode(newKey);
 			}
 			else
 			{
@@ -124,11 +121,7 @@ public class TNode<Key extends Comparable<Key>, Value> implements Comparable<TNo
 		{
 			if (this.hasRightChild())
 			{
-				TNode<Key,Value> rightNode = this.getRightChild().deleteNode(newKey);
-				if (rightNode != null)
-				{
-					return rightNode;
-				}
+				this.getRightChild().deleteNode(newKey);
 			}
 			else
 			{
@@ -150,24 +143,21 @@ public class TNode<Key extends Comparable<Key>, Value> implements Comparable<TNo
             }
             else
             {
-			// node with two children: Get the inorder successor (smallest
-            // in the right subtree)
+			// node with two children: Gets the smallest node in the right subtree.
             TNode<Key, Value> minNode = this.minKeyValue(newKey);
             return minNode;
             }	
 		}
 		else
 		{
-			/*just filled in to make method work for now but should replace with
-			 * input validation and options to rerun method or exit method.
-			 */
+			//key provided in argument does not match a key in the tree.
 			return null;
 		}
 		return null;	
 	}
 	
 	/*this method starts with the right subtree of a node and keeps going left
-	 * in order to find the minimum value of the left subtree.
+	 * in order to find the minimum value of the right subtree.
 	 */
 	  TNode<Key,Value> minKeyValue(Key newKey)
 	  {
@@ -192,25 +182,20 @@ public class TNode<Key extends Comparable<Key>, Value> implements Comparable<TNo
 		        TNode<Key, Value> parentNode = this.rightChild;
 		        for (int i = 0; i < (counter-1); i += 1)
 		        {
-		        	//need to set super Node leftchild = tempNode
 		        	parentNode = parentNode.leftChild;
 		        }
 		        parentNode.leftChild = tempNode;
 	        }
 	        
-	        /*because minkey is going to replace a Node higher up the tree
-	         *  we dont want to lose the higher up nodes nodes children
+	        /*because minkey is going to replace a Node that is higher up the tree
+	         *  we dont want to lose the higher up nodes children
 	         */
 	        minKey.rightChild = this.rightChild;
 	        minKey.leftChild = this.leftChild;
 	        
-	        
 	        //minkey Node replaces node that called this method
 	        return minKey;
 	    }
-	
-	
-
 	
 	@Override
 	public int compareTo(TNode<Key, Value> Node) {
@@ -227,7 +212,6 @@ public class TNode<Key extends Comparable<Key>, Value> implements Comparable<TNo
 		return !(this.rightChild == null); //returns opposite of whatever statement returns
 	}
 	
-
 	//getter methods
 	protected Key getKey()
 	{
@@ -239,7 +223,6 @@ public class TNode<Key extends Comparable<Key>, Value> implements Comparable<TNo
 		return this.key.toString();
 	}
 
-	
 	protected Value getValue()
 	{
 		return this.value;

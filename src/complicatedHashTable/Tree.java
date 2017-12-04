@@ -17,28 +17,31 @@ public class Tree<Key extends Comparable<Key>,Value> {
 		this.root = new TNode<Key, Value>(key,value);
 	}
 	
+	
 	//methods
 	protected void insert(Key newKey, Value newValue)
 	{
+		if (this.root == null)
+		{
+			this.root = new TNode<Key,Value>(newKey, newValue);
+		}
+		else
+		{
 		this.root.insertNode(newKey, newValue);
+		}
 	}
-	
 	
 	protected Value get(Key newKey)
 	{
 		return this.root.getNode(newKey);
 	}
 	
-	
-	protected void delete(Key newKey)
+	protected void removeFromTree(Key newKey)
 	{
 		this.root = this.root.deleteNode(newKey);
 	}
 	
-	
-	
 
-	
 	//getter methods
 	/*should I not have getter methods to protect the wrapped class?
 	 * 

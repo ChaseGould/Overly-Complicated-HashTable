@@ -5,7 +5,6 @@ public class Key implements Comparable <Key> {
 	//fields
 	private Complex myComplexNum;
 		
-	
 	//constructors
 	public Key()
 	{
@@ -35,7 +34,7 @@ public class Key implements Comparable <Key> {
 	}
 	
 	//getter methods
-	public Complex getMyComplexNum()
+	protected Complex getMyComplexNum()
 	{
 		return this.myComplexNum;
 	}

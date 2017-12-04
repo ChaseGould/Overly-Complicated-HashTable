@@ -4,10 +4,10 @@ public class HashMap<Key extends Comparable<Key>,Value> {
 	
 
 	//fields
-	private Tree tree;
+	private Tree<Key,Value> tree;
 	
 	//constructors
-	public HashMap(Tree tree)
+	public HashMap(Tree<Key,Value> tree)
 	{
 		this.tree = tree;
 	}
@@ -23,14 +23,10 @@ public class HashMap<Key extends Comparable<Key>,Value> {
 		this.tree.get(newKey);
 	}
 	
-	/*
-	  public TNode remove(Key key){
-	  
-	  }
-	 */
-	
-	
-	
+	public void remove(Key newKey) 
+	{
+		this.tree.removeFromTree(newKey);
+	}	
 	
 	
 }

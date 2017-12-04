@@ -32,8 +32,14 @@ public class Test {
 		tree1.insert(key3, inty3);
 		tree1.insert(key4, inty4);
 		tree1.insert(key5, inty5);
-		tree1.delete(key1);
+		tree1.removeFromTree(key1);
 		System.out.println(tree1.getRootKey());
+		TNode<Key,Integer> temp = tree1.getRoot();
+		temp = temp.getRightChild();
+		System.out.println(temp.getKeyRepresentation());
+		temp = temp.getRightChild();
+		System.out.println(temp.getKeyRepresentation());
+		
 		
 		
 		
